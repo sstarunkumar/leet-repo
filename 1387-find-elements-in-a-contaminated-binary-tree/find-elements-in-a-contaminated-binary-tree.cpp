@@ -24,8 +24,6 @@ public:
     }
     FindElements(TreeNode* root) 
     {
-        if(root!=nullptr)
-            root->val=0;
         valfill(root,0);
     }
     bool find(int target) 
