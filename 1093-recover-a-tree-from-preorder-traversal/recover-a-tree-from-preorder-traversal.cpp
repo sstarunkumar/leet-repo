@@ -24,9 +24,10 @@ public:
         }
         int x=stoi(number);
         TreeNode *root = new TreeNode(x);
+        
         stack<TreeNode*> st;
         st.push(root);
-        cout<<x<<" "<<height<<endl;
+        //cout<<x<<" "<<height<<endl;
 
         while(i<str.size())
         {
@@ -45,17 +46,18 @@ public:
             x=stoi(number);
             while(st.size() > height)
                 st.pop();
+            TreeNode *node = new TreeNode(x);
             if(st.top()->left == nullptr)
             {
-                st.top()->left = new TreeNode(x);
-                st.push( st.top()->left );
+                st.top()->left = node;
+                st.push( node );
             }
             else
             {
-                st.top()->right = new TreeNode(x);
-                st.push( st.top()->right );
+                st.top()->right = node;
+                st.push( node );
             }
-            cout<<x<<" "<<height<<endl;
+            //cout<<x<<" "<<height<<endl;
         }
         return root;
     }
