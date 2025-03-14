@@ -11,7 +11,11 @@ public:
             int mid=lo+(hi-lo)/2;
             long long q=0;
             for(int i:candies)
+            {
                 q+=i/mid;
+                if(q>=k)
+                    break;
+            }
             if(q>=k)
             {
                 ans=mid;
