@@ -19,29 +19,23 @@ public:
             vec[edges[i][0]].push_back({edges[i][1],edges[i][2]});
             vec[edges[i][1]].push_back({edges[i][0],edges[i][2]});
         }
-        x = 0;
         vector<bool> vis(n,false);
-        vector<int> parent(n);
+        vector<int> parent(n,INT_MIN);
         vector<int> minand(n);
-        for(int i=0;i<n;i++)
-        {
-            if(!vis[i])
-            {
-                int andand = INT_MAX;
-                dfs(vec,vis,parent,i,i,andand);
-                x++;
-                for(int p=0;p<n;p++)
-                {
-                    if(parent[p] == i)
-                        minand[p] = andand;
-                }
-            }
-        }
-        cout<<x<<endl;
         x=query.size();
         vector<int> bot;
         for(int i=0;i<x;i++)
         {
+            if(parent[query[i][0]] == INT_MIN)
+            {
+                int andand = INT_MAX;
+                dfs(vec,vis,parent,query[i][0],query[i][0],andand);
+                for(int p=0;p<n;p++)
+                {
+                    if(parent[p] == query[i][0])
+                        minand[p] = andand;
+                }
+            }
             if( parent[ query[i][0] ] == parent[ query[i][1] ])
                 bot.push_back(minand[ query[i][0] ]);
             else
