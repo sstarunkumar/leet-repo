@@ -23,7 +23,6 @@ public:
             if(nums[i] == val)
                 fre++;
             vec[i]=fre;
-            cout<<vec[i]<<" ";
         }
         for(int i=0;i<n-1;i++)
         {
