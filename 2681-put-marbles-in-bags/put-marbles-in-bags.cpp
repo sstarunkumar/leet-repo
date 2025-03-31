@@ -17,22 +17,20 @@ public:
             x = weights[i]+weights[i-1];            
             minh.push(x);
             maxh.push(x);
-            minh.pop();
-            maxh.pop();
         }
 
         long long mini =0;
-        while(!minh.empty())
+        for(int i=1;i<k;i++)
         {
             mini += minh.top();
             minh.pop();
         }
         long long maxi = 0;
-        while(!maxh.empty())
+        for(int i=1;i<k;i++)
         {
             maxi += maxh.top();
             maxh.pop();
         }
-        return mini - maxi;
+        return maxi - mini;
     }
 };
