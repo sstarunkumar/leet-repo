@@ -25,28 +25,14 @@ public:
         while(!minh.empty())
         {
             mini += minh.top();
-            cout<<mini<<" ";
             minh.pop();
         }
-        cout<<endl;
         long long maxi = 0;
         while(!maxh.empty())
         {
             maxi += maxh.top();
-            cout<<maxi<<" ";
             maxh.pop();
         }
         return mini - maxi;
-        /*
-        (4 | 8 | 6) + 2
-        1   3 5 1
-        2 4
-        
-        1 3     5 1
-        4       6
-
-        1 3 5   1
-        6       2
-        */
     }
 };
