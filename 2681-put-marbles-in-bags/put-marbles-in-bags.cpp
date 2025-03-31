@@ -1,0 +1,52 @@
+class Solution {
+public:
+    long long putMarbles(vector<int>& weights, int k) 
+    {
+        priority_queue<int> maxh;
+        priority_queue<int,vector<int>,greater<int>> minh;
+        int n = weights.size();
+        int x;
+        for(int i=1;i<k;i++)
+        {
+            x = weights[i] + weights[i-1];
+            minh.push(x);
+            maxh.push(x);
+        }
+        for(int i=k;i<n;i++)
+        {
+            x = weights[i]+weights[i-1];            
+            minh.push(x);
+            maxh.push(x);
+            minh.pop();
+            maxh.pop();
+        }
+
+        long long mini =0;
+        while(!minh.empty())
+        {
+            mini += minh.top();
+            cout<<mini<<" ";
+            minh.pop();
+        }
+        cout<<endl;
+        long long maxi = 0;
+        while(!maxh.empty())
+        {
+            maxi += maxh.top();
+            cout<<maxi<<" ";
+            maxh.pop();
+        }
+        return mini - maxi;
+        /*
+        (4 | 8 | 6) + 2
+        1   3 5 1
+        2 4
+        
+        1 3     5 1
+        4       6
+
+        1 3 5   1
+        6       2
+        */
+    }
+};
