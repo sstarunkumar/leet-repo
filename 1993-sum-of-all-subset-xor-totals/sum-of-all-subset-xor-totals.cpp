@@ -1,24 +1,20 @@
 class Solution {
 public:
-    bool checkbit(int n,int i)
+    int sum =0;
+    void xorsum(vector<int> &nums,int n,int xoro,int ind)
     {
-        return (n>>i) & 1 ;
+        if(ind>=n)
+        {
+            sum+=xoro;
+            return;
+        }
+        xorsum(nums,n,xoro^nums[ind],ind+1);
+        xorsum(nums,n,xoro,ind+1);
     }
     int subsetXORSum(vector<int>& nums) 
     {
-        int n = nums.size(); 
-        int x = (1<<n);    
-        int ans =0;   
-        for(int i=0;i<x;i++)
-        {
-            int xoro = 0;
-            for(int j=0;j<32;j++)
-            {
-                if(checkbit(i,j))
-                    xoro^=nums[j];
-            }
-            ans +=xoro;
-        }
-        return ans;
+        int n = nums.size();
+        xorsum(nums,n,0,0);
+        return sum;
     }
 };
