@@ -3,20 +3,12 @@ public:
     int missingNumber(vector<int>& nums) 
     {
         int n=nums.size();
-        for(int i=0;i<=n;i++)
+        int ans = 0;
+        for(int i=0;i<n;i++)
         {
-            bool flag = true;
-            for(int j=0;j<n;j++)
-            {
-                if(nums[j] == i)
-                {
-                    flag = false;
-                    break;
-                }
-            }
-            if(flag)
-                return i;
+            ans ^= i;
+            ans ^= nums[i];
         }
-        return -1;
+        return ans ^ n;
     }
 };
