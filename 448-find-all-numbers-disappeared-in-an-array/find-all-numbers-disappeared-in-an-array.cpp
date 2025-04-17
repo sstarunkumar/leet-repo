@@ -34,7 +34,7 @@ public:
                 ans.push_back(i);
         }    
         return ans;
-        */
+        // solution -2;
         int n=nums.size();
         vector<int> ans;
         sort(nums.begin(),nums.end());
@@ -43,6 +43,14 @@ public:
             if(!bssearch(nums,i))
                 ans.push_back(i);
         }
+        return ans;
+        */
+        unordered_set<int> s(nums.begin(),nums.end());
+        vector<int> ans;
+        int n=nums.size();
+        for(int i=1;i<=n;i++)
+            if(!s.count(i))
+                ans.push_back(i);
         return ans;
     }
 };
