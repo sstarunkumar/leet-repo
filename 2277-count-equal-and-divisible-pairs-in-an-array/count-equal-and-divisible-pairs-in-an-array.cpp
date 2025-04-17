@@ -8,8 +8,7 @@ public:
         {
             for(int j=i+1;j<n;j++)
             {
-                if(nums[i]== nums[j])
-                    if((i*j)%k == 0)
+                if(nums[i]== nums[j] && (i*j)%k == 0)
                         ans++;
             }
         }
