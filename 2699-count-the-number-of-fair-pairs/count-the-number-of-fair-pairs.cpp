@@ -3,8 +3,7 @@ public:
     int bsfloor(vector<int> &vec,int index,int k)
     {
         int n = vec.size();
-        int lo = index,hi = n-1;
-        int ans=-1;
+        int lo = index,hi = n-1,ans=-1;
         while(lo<=hi)
         {
             int mid = lo+(hi-lo)/2;
@@ -26,13 +25,10 @@ public:
         for(int i=0;i<n;i++)
         {
             int x=bsfloor(nums,i,upper-nums[i]);
-            cout<<x<<" ";
             ans += x==-1 ? 0 : x - i;
             x = bsfloor(nums,i,lower-nums[i]-1);
-            cout<<x<<endl;
             ans -= x==-1 ? 0 :x-i;
-        }
-        
+        }        
         return ans;
     }
 };
