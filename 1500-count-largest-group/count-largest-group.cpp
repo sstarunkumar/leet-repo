@@ -8,7 +8,6 @@ public:
             ans+=n%10;
             n/=10;
         }
-        cout<<ans<<" ";
         return ans;
     }
     int countLargestGroup(int n) 
@@ -16,17 +15,11 @@ public:
         vector<int> vec(37,0);
         for(int i=1;i<=n;i++)
             vec[sum(i)]++;
-        int maxi = 0,count = 0;
-        for(int i=1;i<=36;i++)
-        {
-            if(vec[i]>maxi)
-            {
-                maxi = vec[i]; 
-                count = 0;
-            }
-            if(vec[i]==maxi)
+        int count = 0;
+        int maxi = *max_element(vec.begin(),vec.end());
+        for(int &i:vec)
+            if(i==maxi)
                 count++;
-        }
         return count;
     }
 };
