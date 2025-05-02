@@ -18,7 +18,8 @@ public:
                 st.pop();
                 if(st.empty())
                     st.push(i);
-                ans = max(ans,i-st.top());
+                else
+                    ans = max(ans,i-st.top());
             }
         }
         return ans;
