@@ -1,39 +1,26 @@
 class Solution {
 public:
-    bool valid(vector<int> &nums,int k,int p)
-    {
-        if(p == 0)
-            return true;
-        int counter = 0,n=nums.size();
-        for(int i=1;i<n;i++)
-        {
-            if(nums[i] - nums[i-1] <= k)
-            {
-                i++;
-                counter++;
-                if(counter >= p)
-                    return true;
-            }
-        }
-        return false;
-    }
     int minimizeMax(vector<int>& nums, int p) 
     {
+        if(p == 0)  return false;
         sort(nums.begin(),nums.end());
+        int n = nums.size();
         int lo = 0,hi = nums.back() - nums[0];
-        int ans = 0;
         while(lo <= hi)
         {
-            int mid = lo + (hi-lo)/2;
-            if( valid(nums,mid,p) )
+            int mid = lo + (hi-lo)/2 , counter = 0;
+            for(int i=1;i<n;i++)
             {
-                ans = mid;
-                hi=mid-1;
+                if(nums[i] - nums[i-1] <= mid)
+                {
+                    counter++;
+                    i++;
+                }
             }
-            else
-                lo = mid+1;
+            if( counter >= p )      hi=mid-1;
+            else                    lo = mid+1;
         }
-        return ans;
+        return hi+1;
     }
 };
 
