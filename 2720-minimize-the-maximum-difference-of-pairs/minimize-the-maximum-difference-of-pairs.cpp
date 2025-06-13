@@ -2,8 +2,9 @@ class Solution {
 public:
     bool valid(vector<int> &nums,int k,int p)
     {
-        int counter = 0;
-        int n=nums.size();
+        if(p == 0)
+            return true;
+        int counter = 0,n=nums.size();
         for(int i=1;i<n;i++)
         {
             if(nums[i] - nums[i-1] <= k)
@@ -14,7 +15,7 @@ public:
                     return true;
             }
         }
-        return counter >= p ;
+        return false;
     }
     int minimizeMax(vector<int>& nums, int p) 
     {
