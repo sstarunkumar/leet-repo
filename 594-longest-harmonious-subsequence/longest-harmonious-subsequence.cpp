@@ -2,21 +2,24 @@ class Solution {
 public:
     int findLHS(vector<int>& nums) 
     {
-        map<int,int> mp;
-        for(int &i:nums)
-            mp[i]++;
-        if(mp.size() == 1)
-            return 0;
-        auto p = mp.begin(),i = mp.begin();
-        i++;
-        int ans = 0;
-        while(i!=mp.end())
-        {
-            if(i->first - p->first == 1)
-                ans = max(ans, i->second + p->second);
-            p = i;
-            i++;
-        }
+        sort(nums.begin(),nums.end());
+        int curr = nums[0], prev = nums[0];
+        int n = nums.size();
+        int ans = 0,count = 1,prevcount = 0;
+        for(int i=1;i<n;i++)
+            if(nums[i]!=curr)
+            {
+                if(curr - prev == 1)
+                    ans = max(ans , count + prevcount);
+                prev = curr;
+                curr = nums[i];
+                prevcount = count;
+                count = 1;
+            }
+            else
+                count ++;
+            if(curr - prev == 1)
+                ans = max(ans , count + prevcount);
         return ans;
     }
 };
