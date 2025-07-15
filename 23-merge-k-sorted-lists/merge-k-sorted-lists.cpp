@@ -23,30 +23,26 @@ public:
         priority_queue<ListNode*,vector<ListNode*>,compare> pq;
         int n = lists.size();
         for(int i=0;i<n;i++)
-        {
             if(lists[i])
                 pq.push(lists[i]);
-        }  
-        ListNode *head = nullptr,*tail = nullptr;       
+
+        ListNode *head = nullptr,*tail = nullptr;   
+        if(!pq.empty())
+        {
+            ListNode* temp = pq.top();
+            pq.pop();
+            if(temp->next)
+                pq.push(temp->next);
+            head = tail = temp;
+        }    
         while(!pq.empty())
         {
             ListNode* temp = pq.top();
             pq.pop();
-            if(head == nullptr && tail == nullptr)
-            {
-                head = tail = temp;
-                temp = temp ->next;
-                if(temp)
-                    pq.push(temp);
-            }
-            else
-            {
-                tail->next = temp;
-                tail = tail->next;
-                temp = temp->next;
-                if(temp)
-                    pq.push(temp);
-            }
+            tail->next = temp;
+            tail = tail->next;
+            if(temp->next)
+                pq.push(temp->next);
         }
         return head;
     }
