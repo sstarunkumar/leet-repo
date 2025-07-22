@@ -8,7 +8,7 @@ public:
         int l = 0;
         for(int i=0;i<n;i++)
         {
-            if(se.count(nums[i]))
+            if(se.find(nums[i]) != se.end())
             {
                 while(nums[l] != nums[i])
                 {
