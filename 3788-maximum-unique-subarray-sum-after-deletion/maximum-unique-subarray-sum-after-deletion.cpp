@@ -8,7 +8,8 @@ public:
         {
             sum += i;
             ans = max(ans,sum);
-            sum = max(0,sum); 
+            if(sum < 0)
+                sum = 0;
         } 
         return ans;
     }
