@@ -14,7 +14,6 @@ public:
                 ans = min(ans,i-left+1);
                 sum -= nums[left++];
             }
-            cout<<sum<<" ";
         }   
         return ans == INT_MAX ? 0 : ans;
     }
