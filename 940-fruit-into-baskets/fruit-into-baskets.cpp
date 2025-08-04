@@ -26,9 +26,7 @@ public:
         while( lo<=hi )
         {
             int mid = lo + (hi-lo)/2;
-            bool val = slide(fruits,n,mid);
-            cout<<mid<<" "<<val<<endl;
-            if( val )
+            if( slide(fruits,n,mid) )
             {
                 ans = mid;
                 lo = mid+1;
