@@ -23,16 +23,19 @@ public:
                 if( fruits[i] <= windowmax[j] )
                 {
                     ans--;
-                    int start = j * windowsize;
-                    for(int x = 0;x<windowsize && start+x < n;x++)
+                    int start = j * windowsize, maxi = 0;
+                    int x = 0;
+                    for(     ;x<windowsize && start+x < n;x++)
+                    {
                         if( fruits[i] <= baskets[start+x] )
                         {
                             baskets[ start+x ] = 0;
                             break;
                         }
+                        maxi = max( maxi,baskets[start+x] );
+                    }
 
-                    int maxi = 0;
-                    for(int x=0;x<windowsize && start + x < n ; x++)
+                    for(    ;x<windowsize && start + x < n ; x++)
                         maxi = max( maxi,baskets[start+x] );
                     windowmax[j] = maxi;
             
