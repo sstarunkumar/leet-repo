@@ -3,14 +3,19 @@ class Solution
 public:
     bool isAnagram(string &a,string &b)
     {
+        if(a.size() != b.size())
+            return false;
+        int v;
         vector<int> chars(26,0);
         for(char ch:a)
             chars[ ch-'a' ]++;
         for(char ch:b)
-            chars[ ch-'a']--;
-        for(int &i:chars)
-            if(i != 0)
+        {
+            v = ch - 'a';
+            chars[v]--;
+            if(chars[v] < 0)
                 return false;
+        }
         return true;
     }
     vector<string> removeAnagrams(vector<string>& words) 
