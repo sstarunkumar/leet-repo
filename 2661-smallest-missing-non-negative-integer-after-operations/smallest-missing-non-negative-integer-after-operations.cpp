@@ -7,13 +7,10 @@ public:
         {
             int v = i%value;
             if(v<0)
-                v = v + value;
+                v += value;
             fre[v]++;
         }
         int mini = *min_element(fre.begin(), fre.end());
-        cout<<mini<<endl;
-        for(int &i:fre)
-            cout<<i<<" ";
         for(int i = 0; i<value ; i++)
             if( fre[i] == mini )
                 return mini * value + i;
