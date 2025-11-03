@@ -14,19 +14,13 @@ public:
                 {
                     sum += need[i];
                     i = j;
-                    j++;
                 }
                 else
-                {
                     sum += need[j];
-                    j++;
-                }
             }
             else
-            {
                 i = j;
-                j++;
-            }
+            j++;
         } 
         return sum;
     }
