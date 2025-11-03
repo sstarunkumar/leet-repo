@@ -2,30 +2,30 @@ class Solution {
 public:
     int minCost(string colors, vector<int>& need) 
     {
-        int sum = 0;
         int n = colors.size();
-        int j, c;
-        priority_queue< int, vector<int>, greater<> > pq;
-        for(int i=0;i<n;)
+        int i = 0, j = 1, sum = 0;
+        while( j<n )
         {
-            while( !pq.empty() )
-                pq.pop();
-            j = i+1, c = 1;
-            if( j<n && colors[i] == colors[j] )
-                pq.push(need[i]);
-            while( j<n && colors[i] == colors[j] )
+            if( colors[i] == colors[j] )
             {
-                pq.push(need[j]);
-                j++, c++;
+                if(need[i] <= need[j])
+                {
+                    sum += need[i];
+                    i = j;
+                    j++;
+                }
+                else
+                {
+                    sum += need[j];
+                    j++;
+                }
             }
-            while(c > 1)
+            else
             {
-                sum += pq.top();
-                pq.pop();
-                c--;
+                i = j;
+                j++;
             }
-            i = j;
-        }
+        } 
         return sum;
     }
 };
