@@ -11,7 +11,8 @@ public:
             while( !pq.empty() )
                 pq.pop();
             int j = i+1, c = 1;
-            pq.push(need[i]);
+            if( j<n && colors[i] == colors[j] )
+                pq.push(need[i]);
             while( j<n && colors[i] == colors[j] )
             {
                 pq.push(need[j]);
