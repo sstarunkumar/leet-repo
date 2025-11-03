@@ -4,11 +4,13 @@ public:
     {
         int sum = 0;
         int n = colors.size();
+
+        priority_queue< int, vector<int>, greater<> > pq;
         for(int i=0;i<n;)
         {
-            int j = i+1;
-            int c = 1;
-            priority_queue< int, vector<int>, greater<> > pq;
+            while( !pq.empty() )
+                pq.pop();
+            int j = i+1, c = 1;
             pq.push(need[i]);
             while( j<n && colors[i] == colors[j] )
             {
