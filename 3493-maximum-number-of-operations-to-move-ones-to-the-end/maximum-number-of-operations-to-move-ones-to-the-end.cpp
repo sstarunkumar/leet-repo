@@ -2,11 +2,8 @@ class Solution {
 public:
     int maxOperations(string s) 
     {
-        int n = s.size();
-        int ans = 0;
-        int ones = s[0] == '1';
-
-        for(int i=1;i<n;i++)
+        int n = s.size(), ans = 0, ones = s[0] == '1', i;
+        for(i=1;i<n;i++)
         {
             if(s[i] == '1')
                 ones++;
