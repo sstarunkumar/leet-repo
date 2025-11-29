@@ -4,8 +4,6 @@ public:
     int intersectionSizeTwo(vector<vector<int>>& intervals) 
     {
         int n = intervals.size();
-        if(n == 1)
-            return 2;
         sort( intervals.begin(), intervals.end(),
             [&](vector<int> a, vector<int> b)
             {
@@ -13,30 +11,31 @@ public:
             }
         );
         
-        int a,b;
-        a = b = INT_MIN;
-        int ans = 0;
-        for(int i=0;i<n;i++)
+        int a = intervals[0][1] - 1;
+        int b = intervals[0][1];
+        int ans = 2;
+        int x,y;
+        for(int i=1;i<n;i++)
         {
-            if(a >= intervals[i][0] && a <= intervals[i][1])
+            x = intervals[i][0];
+            y = intervals[i][1];
+            if(a >= x && a <= y)
             {}
-            else if(b >= intervals[i][0] && b <= intervals[i][1])
+            else if(b >= x && b <= y)
             {
-                if(b == intervals[i][1])
-                {
-                    a = intervals[i][1]-1;
-                }
+                if(b == y)
+                    a = y-1;
                 else
                 {
                     a = b;
-                    b = intervals[i][1];
+                    b = y;
                 }
                 ans++;
             }
             else
             {
-                a = intervals[i][1] - 1;
-                b = intervals[i][1];
+                a = y - 1;
+                b = y;
                 ans += 2;
             }
         }
