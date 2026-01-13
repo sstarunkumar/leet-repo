@@ -30,6 +30,6 @@ public:
             else
                 lo = mid + ss;
         }
-        return hi;   
+        return lo;   
     }
 };
