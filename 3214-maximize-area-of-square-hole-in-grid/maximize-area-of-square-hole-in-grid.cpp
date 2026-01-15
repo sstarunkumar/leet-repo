@@ -26,7 +26,8 @@ public:
             }
             else
                 count = 1;
-                
-        return pow( min(h, v) + 1, 2 );
+        
+        int x = min(h, v) + 1;
+        return x * x;
     }
 };
