@@ -2,32 +2,31 @@ class Solution {
 public:
     int maximizeSquareHoleArea(int n, int m, vector<int>& hBars, vector<int>& vBars) 
     {
-        int h = 1;
-        unordered_set<int> settu(hBars.begin(), hBars.end());
-        for(int & i : hBars)
-        {   
-            int t = i-1, c = 1;
-            while( settu.count(t) )
+        int r = hBars.size(), c = vBars.size();
+
+        sort(hBars.begin(), hBars.end());
+        sort(vBars.begin(), vBars.end());
+
+        int h = 1, v = 1, count = 1;
+        for(int i=1;i<r;i++)
+            if(hBars[i-1] + 1 == hBars[i])
             {
-                c++;
-                t--;
+                count++;
+                h = max(h, count);
             }
-            settu.insert(i);
-            h = max(h, c);
-        }
-        settu = unordered_set<int>(vBars.begin(), vBars.end());
-        int v = 1;
-        for(int & i : vBars)
-        {
-            int t = i-1, c = 1;
-            while( settu.count(t) )
+            else
+                count = 1;
+
+        count = 1;
+        for(int i=1;i<c;i++)
+            if(vBars[i-1] + 1 == vBars[i])
             {
-                t--;
-                c++;
+                count++;
+                v = max(v, count);
             }
-            settu.insert(i);
-            v = max(v, c);
-        }
+            else
+                count = 1;
+                
         return pow( min(h, v) + 1, 2 );
     }
 };
