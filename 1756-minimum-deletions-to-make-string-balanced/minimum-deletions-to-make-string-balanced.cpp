@@ -2,18 +2,17 @@ class Solution {
 public:
     int minimumDeletions(string s) 
     {
-        int l = s.size();
-        int a = 0, c = 0;
-        for(int i=l-1; i >= 0; i--)
+        int b = 0, ans = 0;
+        for(char &ch : s)
         {
-            if(s[i] == 'a')
-                a++;
-            else if(a)
+            if(ch == 'b')
+                b++;
+            else if(b)
             {
-                a--;
-                c++;
-            }            
-        }    
-        return c;
+                b--;
+                ans ++;
+            }
+        }
+        return ans;
     }
 };
