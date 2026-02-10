@@ -1,22 +1,13 @@
 class Solution {
 public:
-    bool valid(vector<int> &nums, int start, int k)
-    {
-        unordered_set<int> even, odd;
-        for(int i=start; i < start + k; i++)
-            if( nums[i] & 1 )
-                odd.insert(nums[i]);
-            else
-                even.insert(nums[i]);
-        return odd.size() == even.size();
-    }
     int longestBalanced(vector<int>& nums) 
     {
         int n = nums.size();
         int ans = 0;
+        unordered_set<int> odd, even;
         for(int i=0;i<n;i++)
         {
-            unordered_set<int> odd, even;
+            odd.clear(), even.clear();
             for(int j=i;j<n;j++)
             {
                 if(nums[j] & 1)
