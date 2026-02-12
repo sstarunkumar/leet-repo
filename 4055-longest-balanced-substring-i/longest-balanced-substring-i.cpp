@@ -1,30 +1,32 @@
 class Solution {
 public:
-    bool valid( unordered_map<char,int> &mp )
-    {
-        int x = mp.begin()->second;
-        for(auto i = mp.begin(); i != mp.end(); i++)
-        {
-            if( i->second != x )
-                return false;
-        }
-        return true;
-    }
     int longestBalanced(string s) 
     {
-        int l = s.size();
+        int n = s.size();
+        vector<int> vec(n);
+
+        auto it = s.begin();
+        for(int &i : vec)
+            i = *it++ - 97;
+        
         int ans = 0;
-        unordered_map<char, int> mp;
-        for(int i=0;i<l;i++)
+        vector<int> count(26, 0);
+        for(int i=0;i<n;i++)
         {
-            mp.clear();
-            for(int j=i;j<l;j++)
+            fill( count.begin(), count.end(), 0 );
+            int unique = 0, maxi = 0;
+            for(int j=i;j<n;j++)
             {
-                mp[ s[j] ] ++;
-                if( valid(mp) )
-                    ans = max(ans, j - i + 1);
+                count[ vec[j] ]++;
+                int fre = count[ vec[j] ];
+                int l = j-i+1;
+                maxi = max(maxi, fre);
+                if( fre == 1 )
+                    unique++;
+                if(maxi * unique == l)
+                    ans = max(ans, l);
             }
-        }    
+        }
         return ans;
     }
 };
