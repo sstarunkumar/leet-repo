@@ -9,7 +9,7 @@ public:
         int c = 0, r = 0;
         aa --, bb--;
         string ans = "";
-        while(aa >= 0 && bb >= 0)
+        while(bb >= 0)
         {
             r = a[aa] - '0' + b[bb] - '0' + c ;
             c = r/2;
@@ -17,8 +17,6 @@ public:
             ans = char(r + '0') + ans;
             aa--, bb--;
         }
-        if(aa < 0 && c)
-            return '1' + ans;
         while(aa >= 0)
         {
             r = a[aa] - '0' + c;
@@ -29,6 +27,7 @@ public:
         }
         if(c)
             return '1' + ans;
+            
         return ans;
     }
 };
