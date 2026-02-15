@@ -17,6 +17,8 @@ public:
             ans = char(r + '0') + ans;
             aa--, bb--;
         }
+        if(aa < 0 && c)
+            return '1' + ans;
         while(aa >= 0)
         {
             r = a[aa] - '0' + c;
@@ -27,7 +29,6 @@ public:
         }
         if(c)
             return '1' + ans;
-            
         return ans;
     }
 };
