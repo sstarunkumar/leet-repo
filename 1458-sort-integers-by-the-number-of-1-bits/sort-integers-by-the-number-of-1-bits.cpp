@@ -1,34 +1,25 @@
 class Solution {
 public:
-    int setbits(int a)
+    int bits(int n)
     {
-        int c = 0;
-        while(a != 0)
+        int ans = 0;
+        while(n)
         {
-            c++;
-            a = a&(a-1);
+            n = n & (n-1);
+            ans++;
         }
-        return c;
-    }
-    bool compare(int a,int b)
-    {
-        int aa = setbits(a);
-        int bb = setbits(b);
-        //setbits then value
-        if( aa < bb )
-            return true;
-        else if( aa > bb )
-            return false;
-        else
-            return a < b;
+        return ans;
     }
     vector<int> sortByBits(vector<int>& arr) 
     {
-        sort(arr.begin(),arr.end(),[&](int a,int b)
+        sort( begin(arr), end(arr), [&](int a, int b)
         {
-            return compare(a,b);
-        }
-        );
+            int aa = bits(a);
+            int bb = bits(b);
+            if(aa == bb)
+                return a < b;
+            return aa < bb;
+        } );
         return arr;
     }
 };
