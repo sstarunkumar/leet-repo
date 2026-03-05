@@ -3,17 +3,14 @@ public:
     int minOperations(string s) 
     {
         int n = s.size();
-        int zero = 0, one = 1;
+        int one = 1;
         int x = 0, y = 0;
-        int bot;
         for(int i=0;i<n;i++)
         {
-            bot = s[i] - '0';
-            if(zero != bot)
-                x++;
-            if(one != bot)
-                y++;
-            zero ^= 1, one ^= 1;
+            int b = s[i] - '0';
+            x += (b != one);
+            one ^= 1;
+            y += (b != one);
         }
         return min(x, y);
     }
