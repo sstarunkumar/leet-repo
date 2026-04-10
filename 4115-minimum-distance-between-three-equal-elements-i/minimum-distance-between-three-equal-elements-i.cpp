@@ -3,22 +3,16 @@ public:
     int minimumDistance(vector<int>& nums) 
     {
         int n = nums.size();
-        vector< vector<int> > vec(101);
-        for(int i=0;i<n;i++)
-            vec[ nums[i] ].push_back(i);
-        
         int ans = INT_MAX;
-        for(int i=0; i<=100 ; i++ )
+        for(int i=0;i<n;i++)
         {
-            int ss = vec[i].size();
-            if(ss < 3)
-                continue;
-            for(int j=2; j < ss ; j++ )
+            for(int j=i+1; j<n; j++)
             {
-                int x = vec[i][j] - vec[i][j-1] + 
-                        vec[i][j] - vec[i][j-2] + 
-                        vec[i][j-1] - vec[i][j-2] ;
-                ans = min(ans, x);
+                for(int k = j+1; k<n; k++)
+                {
+                    if(nums[i] == nums[j] && nums[j] == nums[k])
+                        ans = min(ans, k-j + k - i + j - i);
+                }
             }
         }
         return ans == INT_MAX ? -1 : ans;
