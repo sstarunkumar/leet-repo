@@ -3,22 +3,21 @@ public:
     int minimumDistance(vector<int>& nums) 
     {
         int n = nums.size();
-        unordered_map<int, vector<int> > mp;
+        vector< vector<int> > vec(101);
         for(int i=0;i<n;i++)
-            mp[ nums[i] ].push_back(i);
-
+            vec[ nums[i] ].push_back(i);
+        
         int ans = INT_MAX;
-        for( auto p : mp )
+        for(int i=0; i<=100 ; i++ )
         {
-            vector<int> vec = p.second;
-            int ss = vec.size();
-            if( ss < 3 )
+            int ss = vec[i].size();
+            if(ss < 3)
                 continue;
-            for(int i=2; i<ss ; i++)
+            for(int j=2; j < ss ; j++ )
             {
-                int x = vec[i] - vec[i-1] +
-                        vec[i] - vec[i-2] +
-                        vec[i-1] - vec[i-2];
+                int x = vec[i][j] - vec[i][j-1] + 
+                        vec[i][j] - vec[i][j-2] + 
+                        vec[i][j-1] - vec[i][j-2] ;
                 ans = min(ans, x);
             }
         }
