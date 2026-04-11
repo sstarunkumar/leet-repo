@@ -12,11 +12,9 @@ public:
         int ans = INT_MAX;
         for(int i=2;i<n;i++)
         {
-            if( vec[i].first == vec[i-1].first && vec[i-1].first == vec[i-2].first )
+            if( vec[i].first == vec[i-2].first )
             {
-                int x = vec[i].second - vec[i-1].second +
-                        vec[i].second - vec[i-2].second +
-                        vec[i-1].second - vec[i-2].second ;
+                int x = 2 * ( vec[i].second - vec[i-2].second ) ;
                 ans = min(ans, x);
             }
         }
