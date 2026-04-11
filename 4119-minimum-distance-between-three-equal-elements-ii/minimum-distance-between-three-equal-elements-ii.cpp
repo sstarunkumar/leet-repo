@@ -1,23 +1,28 @@
 class Solution {
 public:
-    int minimumDistance(vector<int>& nums) 
-    {
+    int minimumDistance(vector<int>& nums) {
         int n = nums.size();
-        vector< pair<int, int> > vec(n);
-        for(int i=0;i<n;i++)
-            vec[i] = { nums[i], i } ;
+        std::vector<int> next(n, -1);
+        std::unordered_map<int, int> occur;
+        int ans = n + 1;
 
-        sort( vec.begin(), vec.end() );
+        for (int i = n - 1; i >= 0; i--) {
+            if (occur.count(nums[i])) {
+                next[i] = occur[nums[i]];
+            }
+            occur[nums[i]] = i;
+        }
 
-        int ans = INT_MAX;
-        for(int i=2;i<n;i++)
-        {
-            if( vec[i].first == vec[i-2].first )
-            {
-                int x = 2 * ( vec[i].second - vec[i-2].second ) ;
-                ans = min(ans, x);
+        for (int i = 0; i < n; i++) {
+            int secondPos = next[i];
+            if (secondPos != -1) {
+                int thirdPos = next[secondPos];
+                if (thirdPos != -1) {
+                    ans = std::min(ans, thirdPos - i);
+                }
             }
         }
-        return ans == INT_MAX ? -1 : ans;
+
+        return ans == n + 1 ? -1 : ans * 2;
     }
 };
